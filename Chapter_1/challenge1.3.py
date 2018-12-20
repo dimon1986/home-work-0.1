@@ -12,4 +12,4 @@ while not favorite_quote:
 print(f" {favorite_quote.upper()} \n\n"  # поднимим к верхниму ригистру
       f"{name.capitalize():>50}")  # сдвиним имя автора вправо, до сих пор не нарадуюсь f строкам!!
 
-input('\n\nНажмите Enter, что бы выйти...')
+input("\n\nНажмите Enter, что бы выйти...")
