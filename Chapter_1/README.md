@@ -23,8 +23,14 @@ credit to the person who said it on the next line.
 Не забудьте о том, что автор афоризма должен быть упомянут на отдельной строке.
 
 
-Want more than code, want QtPy5 & PyGame,
+Want more than code, want PyGame & QtPy5,
 since the task will be uniformly one application.
 
-Хочется больше чем код, хочется QtPy5 & PyGame,
+Хочется больше чем код, хочется PyGame & QtPy5,
 так как задача единообразна будет одно приложение.
+
+
+![Image alt](https://github.com/dimon1986/home-work-0.1/blob/master/Chapter_1/PyGame/challenge_PyGame1.123.png)
+
+
+![Image alt](https://github.com/dimon1986/home-work-0.1/blob/master/Chapter_1/QtPy5/challenge_QtPy1.123.png)
