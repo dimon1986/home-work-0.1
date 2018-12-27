@@ -1,2 +1,6 @@
 *.~
 *.exe
+_build
+*.pyc
+*.db
+__pycache__

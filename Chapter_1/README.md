@@ -30,7 +30,7 @@ since the task will be uniformly one application.
 так как задача единообразна будет одно приложение.
 
 
-![Image alt](https://github.com/dimon1986/home-work-0.1/blob/master/Chapter_1/PyGame/challenge_PyGame1.123.png)
+![Image alt](https://github.com/dimon1986/home-work-0.1/blob/master/Chapter_1/PyGame/challenge_PyGame0.123.png)
 
 
-![Image alt](https://github.com/dimon1986/home-work-0.1/blob/master/Chapter_1/QtPy5/challenge_QtPy1.123.png)
+![Image alt](https://github.com/dimon1986/home-work-0.1/blob/master/Chapter_1/QtPy5/challenge_QtPy0.123.png)
