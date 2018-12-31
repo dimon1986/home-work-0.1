@@ -11,11 +11,11 @@ def run_main():
         (ai_setting.screen_width, ai_setting.screen_height))
     pygame.display.set_caption('Выбор мороженного и ко')
     # Создание кнопок-интерфейса.
-    button = Button(screen, "Очистить", width_x=200, rect_width=440)
-    check_button = Button(screen, "#1", rect_height=380)
-    check_button2 = Button(screen, "#2", rect_height=330)
-    check_button3 = Button(screen, "#3", rect_height=280)
-    check_button4 = Button(screen, "#4", rect_height=230)
+    button = Button(screen, 'Очистить', width_x=200, rect_width=440)
+    check_button = Button(screen, '#1', rect_height=380)
+    check_button2 = Button(screen, '#2', rect_height=330)
+    check_button3 = Button(screen, '#3', rect_height=280)
+    check_button4 = Button(screen, '#4', rect_height=230)
     # создали группу, засунули туда все кнопки
     gui = Group()
     gui.add(button, check_button, check_button2, check_button3, check_button4 )

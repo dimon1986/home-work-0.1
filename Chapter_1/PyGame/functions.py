@@ -46,7 +46,7 @@ def check_play_button(gui, image_all, input_boxis, mouse_x, mouse_y):
                 image_all.image = pygame.image.load(f"{image_all.dict_image['ice_ch']}")
             elif button.msg == '#4':
                 image_all.image = pygame.image.load(f"{image_all.dict_image['ice_s']}")
-            elif button.msg == "Очистить":
+            elif button.msg == 'Очистить':
                 # очищаем текст
                 for input_box in input_boxis.sprites():
                     input_box.text = ''
