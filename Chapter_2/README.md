@@ -33,7 +33,14 @@ all the extras are applied.
 
 Want more than code, want PyGame & QtPy5,
 there will be two applications, as the first 2 questions can be combined into one task.
+You can use Qt designer, very convenient, without it a little longer.
 
 Хочется больше чем код, хочется PyGame & QtPy5,
 всего будет два приложения, так как первые 2 вопроса можно объединить в одно задание.
+Можно использовать Qt designer, очень удобно, без него чуть дольше.
+
+![Image alt](https://github.com/dimon1986/home-work-0.1/blob/master/Chapter_2/PyGame/challenge_PyGame2.1_2.png)
+![Image alt](https://github.com/dimon1986/home-work-0.1/blob/master/Chapter_2/PyGame/challenge_PyGame2.3.png)
+![Image alt](https://github.com/dimon1986/home-work-0.1/blob/master/Chapter_2/QtPy5/challenge_QtPy2.1_2.png)
+![Image alt](https://github.com/dimon1986/home-work-0.1/blob/master/Chapter_2/QtPy5/challenge_QtPy2.3.png)
 
