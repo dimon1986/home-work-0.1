@@ -2,29 +2,29 @@ import sys
 import pygame
 
 
-def check_keydown_events(event, input_boxis):
+def check_keydown_events(event, input_boxes):
     """Реагирует на нажатие клавишь."""
     if event.key == pygame.K_ESCAPE:  # вместо enter привычнее esc:)
         sys.exit()
     if event.type == pygame.KEYDOWN:  # любая клавиша на клаве
-        for input_box in input_boxis.sprites():  # для каждого бокса входящего в инпуты
+        for input_box in input_boxes.sprites():  # для каждого бокса входящего в инпуты
             if input_box.active:  # если он активный
                 if event.key == pygame.K_RETURN:  # нажимаем ввод и печатается текст который в инпуте
                     # можем допустим добавить имя в рекорды
-                    print(input_box.text)
-                    input_box.text = ''  # очищаем его, разнапечатали
+                    print(input_box.txt)
+                    input_box.txt = ''  # очищаем его, раз напечатали
                 elif event.key == pygame.K_BACKSPACE:  # строка это последовательность, а раз так
-                    input_box.text = input_box.text[:-1]  # удаляем последнее значение бэкспейсом
+                    input_box.txt = input_box.txt[:-1]  # удаляем последнее значение бэкспейсом
                 else:
-                    input_box.text += event.unicode   # конкатенация
+                    input_box.txt += event.unicode   # конкатенация
                 # рендерим текст и отправляем на экран.
-                input_box.txt_surface = input_box.font.render(input_box.text, True, input_box.color)
+                input_box.txt_rect = input_box.font.render(input_box.txt, True, input_box.color)
 
 
-def check_play_button(gui, image_all, input_boxis, mouse_x, mouse_y):
+def check_play_button(gui, image_all, input_boxes, mouse_x, mouse_y):
     """Проверяет нажатие кнопок и инпутбокса"""
     # для каждого бокса входящего в инпуты
-    for input_box in input_boxis.sprites():
+    for input_box in input_boxes.sprites():
         # сразу на проверку коллизии
         if input_box.rect.collidepoint(mouse_x, mouse_y):
             # если да включаем флаг актив
@@ -48,10 +48,10 @@ def check_play_button(gui, image_all, input_boxis, mouse_x, mouse_y):
                 image_all.image = pygame.image.load(f"{image_all.dict_image['ice_s']}")
             elif button.msg == 'Очистить':
                 # очищаем текст
-                for input_box in input_boxis.sprites():
-                    input_box.text = ''
+                for input_box in input_boxes.sprites():
+                    input_box.txt = ''
                     # а затем обновляем рисунок текста на экране
-                    input_box.txt_surface = input_box.font.render(input_box.text, True, input_box.color)
+                    input_box.txt_rect = input_box.font.render(input_box.txt, True, input_box.color)
 
 
 def pos_button(gui, mouse_x, mouse_y):
@@ -65,7 +65,7 @@ def pos_button(gui, mouse_x, mouse_y):
             button.pos_button_hover = False  # иначе флаг переключается на фолс
 
 
-def check_events(ai_setting, screen, gui, image_all, input_boxis):
+def check_events(gui, image_all, input_boxes):
     # Отслеживание событий клавиатуры и мыши.
     for event in pygame.event.get():
         # тут всё ясно, выходим если нажимаем на крестик
@@ -78,13 +78,13 @@ def check_events(ai_setting, screen, gui, image_all, input_boxis):
         # если нажали на мышку
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()  # х и у её, улитают другой функции
-            check_play_button(gui, image_all, input_boxis, mouse_x, mouse_y)
+            check_play_button(gui, image_all, input_boxes, mouse_x, mouse_y)
         # для проверки нажалили нужную кнопку клавиатуры
         elif event.type == pygame.KEYDOWN:
-            check_keydown_events(event, input_boxis)
+            check_keydown_events(event, input_boxes)
 
 
-def update_screen(ai_setting, screen, gui, image_all, input_boxis):
+def update_screen(ai_setting, screen, gui, image_all, input_boxes):
     """Обновляет изображения на экране и отображает новый экран."""
     # При каждом проходе цикла перерисоввывается экран
     screen.fill(ai_setting.bg_color)  # задник заливается
@@ -92,7 +92,7 @@ def update_screen(ai_setting, screen, gui, image_all, input_boxis):
         button.draw_button()  # каждая кнопка отрисовывается
         if button.pos_button_hover:  # пороверяем кнопку на флаг
             button.update()  # если над кнопкой мышка, то по особенному отрисовывается
-    for input_box1 in input_boxis.sprites():
+    for input_box1 in input_boxes.sprites():
         input_box1.draw()  # просто отрисовывается поле ввода
         if input_box1.active:
             input_box1.update()  # если оно активно, меняется цвет и текст

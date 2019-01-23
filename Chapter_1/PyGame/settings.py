@@ -20,10 +20,10 @@ class Image(Sprite):
         self.screen = screen
         self.screen_rect = self.screen.get_rect()
         # блин почему раньше не сказали про такой путь очень удобно!
-        self.dict_image={'ice_b': os.path.abspath('data//ice_b.png'),
-                    'ice_c': os.path.abspath('data//ice_c.png'),
-                    'ice_ch': os.path.abspath('data//ice_ch.png'),
-                    'ice_s': os.path.abspath('data//ice_s.png')}
+        self.dict_image = {'ice_b': os.path.abspath('data//ice_b.png'),
+                           'ice_c': os.path.abspath('data//ice_c.png'),
+                           'ice_ch': os.path.abspath('data//ice_ch.png'),
+                           'ice_s': os.path.abspath('data//ice_s.png')}
         # загрузка изображениий мороженного
         self.image = pygame.image.load(f"{self.dict_image['ice_b']}")
         # получаем примоугольник картинки
@@ -41,7 +41,8 @@ class Image(Sprite):
 class InputBox(Sprite):
     """Класс поля ввода, принимает текст и преобразовывае его в картинку,
     ширина по х и высота по у, далее 2шт позиции на экране"""
-    def __init__(self, screen, text='', rect_width=10, rect_height=10, width_x=620, height_y=50, ):
+    def __init__(self, screen, txt='',
+                 x=10, y=10, width=620, height=50):
         super(InputBox, self).__init__()
         self.screen = screen
         self.screen_rect = screen.get_rect()
@@ -54,27 +55,28 @@ class InputBox(Sprite):
         # Шрифт и его размер
         self.font = pygame.font.SysFont(None, 24)
         # принимаем проаметр текст далее его рендерим
-        self.text = text
-        self.txt_surface = self.font.render(text, True, self.color, )
+        self.txt = txt
+        self.txt_rect = self.font.render(txt, True, self.color)
         # создаем собствено сам квадрат, передав где находиться и широту и высоту
-        self.rect = pygame.Rect(rect_width, rect_height, width_x, height_y,)
+        self.rect = pygame.Rect(x, y, width, height)
 
     def update(self):
         # Если текст слишком длинный увеличиваем ширину поля ввода
-        width_update = max(620, self.txt_surface.get_width() + 10)
+        width_update = max(620, self.txt_rect.get_width() + 10)
         self.rect.width = width_update
 
     def draw(self):
-        # как раз передаем экрану рисунок текста
-        self.screen.blit(self.txt_surface, (self.rect.left+5, self.rect.top+5))
-        # вывод на экран
+        # передаем экрану рисунок текста
+        self.screen.blit(self.txt_rect, (self.rect.left+5, self.rect.top+15))
+        # вывод на экран инпут бокса
         pygame.draw.rect(self.screen, self.color, self.rect, 2)  # последний аргумент ширина border!
 
 
 class Button(Sprite):
     """Класс кнопки, 
     наверно как-то более красиво можно сделать."""
-    def __init__(self, screen, msg,  rect_width=590, rect_height=430, width_x=50, height_y=50,):
+    def __init__(self, screen, msg,  x=590, y=430,
+                 width=50, height=50,):
         super(Button, self).__init__()
         self.screen = screen
         self.screen_rect = screen.get_rect()
@@ -85,7 +87,7 @@ class Button(Sprite):
         # флаг для переключения состояния кнопки
         self.pos_button_hover = False
         # Построение объекта rect кнопки и выравнивание где нам нада.
-        self.rect = pygame.Rect(rect_width, rect_height, width_x, height_y)
+        self.rect = pygame.Rect(x, y, width, height)
         # Сообщение кнопки создается только один раз.
         self.prep_msg(msg)
 
