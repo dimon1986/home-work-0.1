@@ -64,6 +64,7 @@ class MyWin(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.textEdit_0.setPlainText(f'{msg}\nСмертный значение мешьше.'
                                              f'\nпопытка номер {self.attempt} закончилась.')
         else:
+            add = '' # я тут понял PySide2 круче, так как пишет в чем ошибка:)
             if self.answer == self.rand_digit:
                 add = 'Всё верно, но уже слишком позно.'
             self.textEdit_0.setPlainText(f'Ты был хорошим человеком, но это конец. '
