@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>660</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_0">
+       <attribute name="title">
+        <string>Пусть посчитают</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="9" column="0">
+         <widget class="QLineEdit" name="lineEdit_3"/>
+        </item>
+        <item row="7" column="0">
+         <widget class="QTextEdit" name="textEdit_0"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLineEdit" name="lineEdit_0"/>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLineEdit" name="lineEdit_2"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_1">
+          <property name="text">
+           <string>Конечное значение</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Шаг (по умолчанию 1)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QPushButton" name="pushButton_0">
+          <property name="text">
+           <string>Посчитать последовательность</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_0">
+          <property name="text">
+           <string>Начальное значение</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLineEdit" name="lineEdit_1"/>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Текст прямой</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0">
+         <widget class="QLineEdit" name="lineEdit_4"/>
+        </item>
+        <item row="10" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Текст наоборот</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_1">
+       <attribute name="title">
+        <string>Анаграммы</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QPushButton" name="pushButton_1">
+          <property name="text">
+           <string>Начать</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="textEdit_1"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Сказать ответ</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_5"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>Проверить</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Отгадай слово</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="text">
+           <string>Начать</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="textEdit_2"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Сказать букву или ответ</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_6"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="text">
+           <string>Проверить</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

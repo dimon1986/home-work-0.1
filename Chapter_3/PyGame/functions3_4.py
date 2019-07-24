@@ -165,10 +165,10 @@ def check_gui(stg, gui, mouse_x, mouse_y, input_box,):
                 # логика действия для нажатых кнопок дроида и смерти
                 if elm.txt == 'Дроид':
                         record_label(gui,)  # запись лейблов
-                        stg.revers()  # запуск одной игры и отключение другой(для отображения елмнтов)
+                        stg.revers(elm.txt)  # запуск одной игры и отключение другой(для отображения елмнтов)
                 if elm.txt == 'Смерть':
                         record_label(gui,)
-                        stg.revers()
+                        stg.revers(elm.txt)
                 if stg.run:
                     if elm.txt == 'Сказать' and input_box.txt:
                         # если преобразование прошло, опусташаем инпут и в проверку смерти

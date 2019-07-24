@@ -17,33 +17,61 @@ class Settings:
         self.screen_width = 640
         self.screen_height = 480
         self.bg_color = (5, 40, 110)
-        self.death_active = True
-        self.droid_active = False
-        ####################################
-        self.run = False
-        self.run_two = False
-        self.attempt = 0
-        self.low = 0  # нижний придел
-        self.high = 0  # верхний придел
-        self.rand_digit = None  # рондомное значение
+        self.deem_active = True
+        self.anagram_active = False
+        self.guess_active = False
         self.answer = None
+        # очки изначальные
+        self.tip = 15
+        # словарь элементов какие отображать
+        self.dict_element = {}
 
-    def run_game(self):
-        # начальная функция, для запуска
-        self.low = 0  # нижний придел - можно передать другие значения
-        self.high = 100  # верхний придел
-        self.attempt = 0  # попытка
-        self.answer = None
-        # начальное значение рондома
-        self.rand_digit = random.randint(self.low, self.high)
+    def who_gui(self):
+        # не уверен что данная проверка не замедляет цыкл
+        if self.deem_active:
+            gui = self.dict_element['deem_gui']
+        elif self.anagram_active:
+            gui = self.dict_element['anagram_gui']
+        else:
+            gui = self.dict_element['guess_gui']
+        return gui
+
+    def load_word(self):
+        """метод загрузки слова """
+        # загрузим последовательность слов делаем выбор
+        with open('data/WORDS.txt', 'r', encoding='utf-8') as f:
+            file = f.read()
+            WORDS = file.split()
+            # случайным образом выберем из последовательности одно слов
+            # создадим переменную с которой будет затем сопоставлена версия игрока
+            self.correct = random.choice(WORDS)
+            # просто звёздочки по длине слова
+            self.long = len(self.correct) * '*'
+
+    def create_jumble_word(self, word):
+        # перемешивание слова
+        jumble_word = ''
+        while word:
+            position = random.randrange(len(word))
+            jumble_word += word[position]
+            # создаём новое слово, делая срез удалением одной буквы, которую определил рондом
+            word = word[:position] + word[(position + 1):]
+        # создадим анаграмму выбранного слова, в которой буквы будут расставлены хаотично
+        self.jumble = jumble_word
 
     def revers(self, txt=None):
-        if self.death_active and txt == 'Дроид':
-            self.death_active = 0
-            self.droid_active = 1
-        elif  self.droid_active and txt == 'Смерть':
-            self.droid_active = 0
-            self.death_active = 1
+        if txt == 'Посчитать':
+            self.deem_active = True
+            self.anagram_active = False
+            self.guess_active = False
+        elif txt == 'Анаграммы':
+            self.deem_active = False
+            self.anagram_active = True
+            self.guess_active = False
+        elif txt == 'Отгадай':
+            self.deem_active = False
+            self.anagram_active = False
+            self.guess_active = True
 
 
 class Widget(Sprite):
@@ -95,6 +123,7 @@ class Widget(Sprite):
         # добавляем img если они None
         if images is not None:
             add_color('img')
+
         # если есть бекграунд, то ищим его в словаре, и добовляем
         if bg_color:
             self.bg_color = self.COLOR[bg_color]  # цвет: standard
@@ -143,9 +172,9 @@ class Widget(Sprite):
         # создаем прямоугольник текста и его центр становиться центром кнопки
         self.txt_rect = self.area.get_rect()
         self.txt_rect.center = self.rect.center
-        if self.the == 'input':
+        if self.the == 'input' or self.the == 'lbl':
             # для инпута центре поменяем, что бы начало начиналось слева
-            self.txt_rect.center = (self.rect.left, self.rect.centery)
+            self.txt_rect.left = self.rect.left
 
     def update_is_hover(self):
         # рисование прямоугольника, заливка цветом, блитинг текста.
@@ -188,7 +217,7 @@ class Button(Widget):
                  # шрифт и его размер
                  font='comicsansms', size=18,
                  # x & y, размер бъекта
-                 x=75, y=300, width=100, height=50):
+                 x=75, y=300, width=105, height=50):
         # вот эта штука нифига не нравиться, интересно можно как нить сократить?
         super(Button, self).__init__(screen, the=the, txt=txt,
                                      # цвета кнопки, текста, прямоугольника
@@ -211,7 +240,7 @@ class Label(Widget):
                  # шрифт и его размер
                  font='comicsansms', size=16,
                  # x & y, размер бъекта
-                 x=10, y=15, width=100, height=50):
+                 x=90, y=15, width=100, height=50):
         # ну не нравиться мне это, может как через * распаковать?
         super(Label, self).__init__(screen, the=the, txt=txt, link=link,
                                     # цвета лейбла, текста, прямоугольника
@@ -231,16 +260,16 @@ class InputBox(Widget):
     """ИнпутБлок так же на основе элемента
     Метод backspace - удаляет екст если активна клавиша
     с draw_txt - удаляет лишнии символы и рэндерит текст"""
-    def __init__(self, screen, the='input', txt='',
+    def __init__(self, screen, the='input', txt='', link=None,
                  # цвета инпута, текста, прямоугольника
                  bg_color='white', hover_bg_color='white', act_bg_color='white',
                  txt_color='black', hover_txt_color='black', act_txt_color='black',
                  border_color='black', hover_border_color='black', act_border_color='yellow',
                  # шрифт и его размер
-                 font='comicsansms', size=18,
+                 font='comicsansms', size=16,
                  # x & y, размер бъекта
-                 x=75, y=300, width=100, height=50):
-        super(InputBox, self).__init__(screen, the=the, txt=txt,
+                 x=90, y=15, width=200, height=25):
+        super(InputBox, self).__init__(screen, the=the, txt=txt, link=link,
                                        # цвета инпута, текста, прямоугольника
                                        bg_color=bg_color, hover_bg_color=hover_bg_color, act_bg_color=act_bg_color,
                                        txt_color=txt_color, hover_txt_color=hover_txt_color, act_txt_color=act_txt_color,
@@ -249,8 +278,10 @@ class InputBox(Widget):
                                        font=font, size=size, x=x, y=y, width=width, height=height)
         self.backspace = False
 
-    def draw_txt(self, digit=6):
+    def draw_txt(self, digit=18):
         if len(self.txt) > digit:
+            self.txt = self.txt[:-1]
+        if len(self.txt) > 4 and self.link != 0:
             self.txt = self.txt[:-1]
         if 'act_txt_color' in self.list_color and self.txt:
             self.txt_image = self.font.render(self.txt, True, self.act_txt_color)
