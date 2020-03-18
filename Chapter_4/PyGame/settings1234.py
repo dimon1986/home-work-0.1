@@ -6,12 +6,12 @@ from pygame.sprite import Sprite
 
 class Settings:
     """Атрибуты: width, height - расширение экрана,
-    bg_color - цвет, активность - death & droid
-    run и run_two - запущена первая или вторая игра,
-    attempt - колличество попыток или шагов,
-    low & high - приделы рондома, rand_digit - само значение,
-    answer - ответ пользователя
-    Методы: run_game - сборос всех значений
+    bg_color - цвет, активность - deem_active, anagram_active, guess_active
+    answer - ответ который даёт пользователь,
+    tip - очки за потраченые или нет подсказки,
+    Методы: who_gui - переключает отображаемые элементы
+    load_word - загрузка слова коректное значение слова
+    create_jumble_word - перемешивание слова
     revers - перевод активности одной игры в другую"""
     def __init__(self):
         self.screen_width = 640
